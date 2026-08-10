@@ -1,0 +1,65 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import BrandLogo from '@components/BrandLogo.astro';
+import HeroSectionAlt from '@components/sections/landing/HeroSectionAlt.astro';
+import FeaturesGeneral from '@components/sections/features/FeaturesGeneral.astro';
+import FAQ from '@components/sections/misc/FAQ.astro';
+import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
+import faqs from '@data/faqs.json';
+import features from '@data/features.json';
+---
+
+<MainLayout>
+  {/* Hero */}
+  <section
+    class="mx-auto max-w-[85rem] px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-24"
+  >
+    <div class="mx-auto max-w-3xl">
+      <div class="mb-8 flex justify-center">
+        <BrandLogo markSize={72} />
+      </div>
+      <h1
+        class="text-4xl font-bold tracking-tight text-balance text-primary md:text-6xl md:leading-tight"
+      >
+        Secure your <span class="text-accent"
+          >Microsoft cloud</span
+        >, properly
+      </h1>
+      <p
+        class="mt-5 text-lg text-pretty text-primary md:mt-6"
+      >
+        Hands-on Azure and Microsoft 365 security: the portal steps, the
+        reasoning, and the PowerShell to automate it. Mapped to CIS, NIST, ISO 27001, NCSC and NIS2.
+      </p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+        <PrimaryCTA title="Read the blog" url="/blog" />
+        <span
+          class="inline-flex cursor-not-allowed items-center justify-center gap-x-2 rounded-lg border border-hairline bg-neutral-200/60 px-4 py-3 text-center text-sm font-medium text-secondary select-none 2xl:text-base dark:bg-zinc-800"
+          title="Coming soon"
+          aria-disabled="true"
+        >
+          Docs
+          <span
+            class="rounded-full bg-neutral-300/70 px-1.5 py-px text-[10px] font-semibold tracking-wide text-secondary uppercase dark:bg-neutral-700"
+          >
+            Soon
+          </span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <FeaturesGeneral
+    title="Hardening you can actually ship"
+    subTitle="Concrete, repeatable steps you can actually ship, each one mapped to the frameworks auditors ask about."
+    features={features}
+  />
+
+  <FAQ title="Frequently<br />asked questions" faqs={faqs} />
+
+  <HeroSectionAlt
+    title="Read the blog"
+    subTitle="Practical Microsoft 365 and Azure hardening, mapped to CIS, NIST, ISO 27001, NCSC and NIS2."
+    url="/blog"
+  />
+</MainLayout>

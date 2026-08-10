@@ -1,0 +1,35 @@
+---
+// Presentational table of contents. Rendered from the headings Astro's
+// render() returns, so it stays in sync with the post automatically.
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface Props {
+  headings: Heading[];
+  class?: string;
+}
+const { headings, class: className = '' } = Astro.props;
+---
+
+<nav class={className} aria-label="Table of contents">
+  <ul class="space-y-1 border-s border-hairline">
+    {
+      headings.map((h) => (
+        <li>
+          <a
+            href={`#${h.slug}`}
+            data-toc-link={h.slug}
+            class:list={[
+              '-ms-px block border-s border-transparent py-1 text-sm text-secondary transition duration-200 hover:text-accent dark:hover:text-blue-500',
+              h.depth >= 3 ? 'ps-6' : 'ps-4',
+            ]}
+          >
+            {h.text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

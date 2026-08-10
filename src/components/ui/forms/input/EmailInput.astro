@@ -1,0 +1,52 @@
+---
+const {
+  label = Astro.currentLocale === 'fr' ? 'Adresse e-mail' : 'Email address',
+  id,
+  errorId,
+} = Astro.props;
+
+interface Props {
+  label?: string;
+  id: string;
+  errorId: string;
+}
+---
+
+{/* Container for the label, input, and validation message */}
+<div>
+  {/* Visually-hidden label; the placeholder carries the field name, matching
+      the name/message fields */}
+  <label for={id} class="sr-only">{label}</label>
+  <div class="relative">
+    {/* Email input field */}
+    <input
+      type="email"
+      id={id}
+      name="email"
+      autocomplete="email"
+      placeholder={label}
+      class="block w-full rounded-lg border border-field-border bg-surface px-4 py-3 text-sm text-primary placeholder:text-secondary focus:border-accent focus:ring-3 focus:ring-blue-500/25 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:focus:ring-1"
+      required
+      aria-describedby={errorId}
+    />
+    {/* Hidden error icon */}
+    <div class="pointer-events-none absolute inset-y-0 end-0 hidden pe-3">
+      <svg
+        class="h-5 w-5 text-red-500"
+        width="16"
+        height="16"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <path
+          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+        ></path>
+      </svg>
+    </div>
+  </div>
+  {/* Validation message which is hidden by default */}
+  <p class="mt-2 hidden text-xs text-red-600" id={errorId}>
+    Please include a valid email address so we can get back to you
+  </p>
+</div>

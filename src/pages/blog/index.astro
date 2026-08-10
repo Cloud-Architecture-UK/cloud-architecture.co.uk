@@ -1,0 +1,137 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import CardBlog from '@components/ui/cards/CardBlog.astro';
+import CardBlogRecent from '@components/ui/cards/CardBlogRecent.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { SITE } from '@data/constants';
+
+// Get all blogs post in English and sort them based on publish date
+
+const englishBlogEntries = await getCollection('blog', ({ id, data }) => {
+  return id.startsWith('en/') && !data.draft;
+});
+
+const blogPosts: CollectionEntry<'blog'>[] = englishBlogEntries.sort(
+  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+// Give the newest post the large "featured" card only once there are enough
+// posts to fill the grid beneath it. With just one or two posts a lone
+// featured card looks oversized, so every post renders as a normal card.
+const FEATURE_THRESHOLD = 3;
+const useFeature: boolean = blogPosts.length >= FEATURE_THRESHOLD;
+const mostRecentPost: CollectionEntry<'blog'> | undefined = useFeature
+  ? blogPosts[0]
+  : undefined;
+const otherPosts: CollectionEntry<'blog'>[] = useFeature
+  ? blogPosts.slice(1)
+  : blogPosts;
+
+const title: string = 'Secure Microsoft 365, properly';
+const subTitle: string =
+  'Practical Microsoft 365 and Azure hardening for real tenants, mapped to CIS, NIST, ISO 27001, NCSC and NIS2.';
+const pageTitle: string = `Blog | ${SITE.title}`;
+const metaDescription =
+  'Practical Microsoft 365 and Azure security guides: portal steps, reasoning, and copy-paste PowerShell, mapped to CIS, NIST, ISO 27001, NCSC and NIS2.';
+const ogTitle = 'Cloud Architecture Blog: Secure Microsoft 365, properly';
+
+const tagCounts = new Map<string, number>();
+for (const p of blogPosts)
+  for (const t of p.data.tags ?? []) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+const topics = [...tagCounts.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .map(([tag]) => tag);
+const prettyTag = (t: string) =>
+  t
+    .replaceAll('-', ' ')
+    .replace(/\bm365\b/i, 'M365')
+    .replace(/^\w/, (c) => c.toUpperCase());
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={ogTitle}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://www.cloud-architecture.co.uk/blog',
+    url: 'https://www.cloud-architecture.co.uk/blog',
+    name: 'Blog | Cloud Architecture',
+    description:
+      'Practical Microsoft 365 and Azure security guides: portal steps, reasoning, and copy-paste PowerShell, mapped to CIS, NIST, ISO 27001, NCSC and NIS2.',
+    isPartOf: {
+      '@type': 'WebSite',
+      url: 'https://www.cloud-architecture.co.uk',
+      name: 'Cloud Architecture',
+      description:
+        'Hands-on Azure and Microsoft 365 security: the portal steps, the reasoning, and the PowerShell to automate it. Mapped to CIS, NIST, ISO 27001, NCSC and NIS2.',
+    },
+    inLanguage: 'en-US',
+  }}
+>
+  <section
+    class="mx-auto max-w-[85rem] space-y-8 px-4 pt-16 sm:px-6 lg:px-8 2xl:max-w-full"
+  >
+    <div class="mx-auto max-w-3xl text-left sm:text-center">
+      <h1
+        class="block text-4xl font-bold tracking-tight text-balance text-primary md:text-5xl lg:text-6xl"
+      >
+        Secure <span class="text-accent">Microsoft 365</span>, properly
+      </h1>
+
+      <p
+        class="mt-4 text-lg text-pretty text-primary"
+      >
+        {subTitle}
+      </p>
+    </div>
+
+    {
+      topics.length > 0 && (
+        <div class="mx-auto max-w-4xl">
+          <p class="mb-3 text-center font-mono text-xs font-semibold tracking-[0.16em] text-accent uppercase">
+            Browse by topic
+          </p>
+          <div class="flex flex-wrap justify-center gap-2">
+            {topics.map(tag => (
+              <a
+                href={`/blog/tags/${tag}/`}
+                class="rounded-full border border-hairline px-3 py-1 text-xs font-medium text-primary transition duration-300 hover:border-blue-600 hover:bg-blue-600 hover:text-white dark:hover:border-blue-600"
+              >
+                {prettyTag(tag)}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
+  </section>
+
+  <section
+    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
+  >
+    {
+      blogPosts.length === 0 ? (
+        <p class="text-center text-primary">
+          No blog posts yet. Check back soon.
+        </p>
+      ) : (
+        <div class="grid gap-6 lg:grid-cols-2">
+          {otherPosts.map(blogEntry => (
+            <CardBlog blogEntry={blogEntry} />
+          ))}
+        </div>
+      )
+    }
+  </section>
+  {
+    mostRecentPost && (
+      <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+        <CardBlogRecent blogEntry={mostRecentPost} />
+      </section>
+    )
+  }
+</MainLayout>

@@ -1,0 +1,255 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import AvatarBlogLarge from '@components/ui/avatars/AvatarBlogLarge.astro';
+import CardRelated from '@components/ui/cards/CardRelated.astro';
+import Bookmark from '@components/ui/buttons/Bookmark.astro';
+import SocialShare from '@components/ui/buttons/SocialShare.astro';
+import TableOfContents from '@components/ui/TableOfContents.astro';
+import { Image, getImage } from 'astro:assets';
+import { capitalize, formatDate } from '@utils/utils';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { SITE } from '@data/constants';
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection(
+    'blog',
+    ({ id, data }) => id.startsWith('en/') && !data.draft
+  );
+  return blogPosts.map(post => {
+    const idWithoutLang = post.id.replace(/^en\//, ''); // Remove the "en/" prefix
+    return {
+      params: { id: idWithoutLang },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+// Table of contents: H2s and H3s only. Show it once a post is long enough to
+// warrant one.
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const showToc = toc.length >= 3;
+
+const blogPosts: CollectionEntry<'blog'>[] = await getCollection(
+  'blog',
+  ({ id, data }) => id.startsWith('en/') && !data.draft
+);
+
+// Filter out the current post to get related posts
+const relatedPosts: CollectionEntry<'blog'>[] = blogPosts.filter(
+  blogEntry => blogEntry.id !== post.id
+);
+
+const pageTitle: string = `${post.data.title} | ${SITE.title}`;
+const metaDescription = post.data.description;
+const ogTitle = `${post.data.title} | Blog | ${SITE.title}`;
+
+// Per-post social image: use the post's own hero (1200x630) rather than the
+// generic site card.
+const ogImageRes = await getImage({
+  src: post.data.cardImage,
+  width: 1200,
+  height: 630,
+  format: 'webp',
+});
+const ogImage = Astro.url.origin + ogImageRes.src;
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={ogTitle}
+  customOgImage={ogImage}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    image: post.data.cardImage.src,
+    datePublished: post.data.pubDate.toISOString(),
+    author: {
+      '@type': 'Person',
+      name: post.data.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.title,
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.cloud-architecture.co.uk/favicon.ico',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.cloud-architecture.co.uk/blog/${post.id.replace(/^en\//, '')}`,
+    },
+  }}
+>
+  <section class="mx-auto max-w-3xl px-4 pt-6 pb-12 sm:px-6 lg:px-8 lg:pt-10 xl:max-w-6xl">
+    <div class="xl:grid xl:grid-cols-[minmax(0,1fr)_15rem] xl:gap-x-10">
+    <div class="max-w-2xl xl:mx-auto xl:w-full">
+      <div class="mb-6 flex items-center justify-between">
+        <div class="flex w-full gap-x-5 sm:items-center sm:gap-x-3">
+          <AvatarBlogLarge blogEntry={post} />
+          <div class="grow">
+            <div class="flex items-center justify-between gap-x-2">
+              <div>
+                <span class="font-bold text-primary">
+                  {post.data.author}
+                </span>
+                <ul class="text-xs text-secondary">
+                  <li
+                    class="relative inline-block pe-6 before:absolute before:end-2 before:top-1/2 before:size-1 before:-translate-y-1/2 before:rounded-full before:bg-secondary last:pe-0 last-of-type:before:hidden"
+                  >
+                    {formatDate(post.data.pubDate)}
+                  </li>
+                  <li
+                    class="relative inline-block pe-6 before:absolute before:end-2 before:top-1/2 before:size-1 before:-translate-y-1/2 before:rounded-full before:bg-secondary last:pe-0 last-of-type:before:hidden"
+                  >
+                    {post.data.readTime} min read
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2
+        class="mb-3 text-2xl font-bold text-primary md:text-3xl"
+      >
+        {post.data.title}
+      </h2>
+      <Image
+        class="mb-5 w-full rounded-xl object-cover md:mb-8"
+        src={post.data.cardImage}
+        alt={post.data.cardImageAlt}
+        draggable={'false'}
+        format={'avif'}
+      />
+      {/* Table of contents (mobile: collapsible) */}
+      {
+        showToc && (
+          <details class="mb-6 rounded-lg border border-hairline p-4 xl:hidden">
+            <summary class="cursor-pointer font-mono text-xs font-semibold tracking-[0.16em] text-accent uppercase">
+              On this page
+            </summary>
+            <TableOfContents headings={toc} class="mt-3" />
+          </details>
+        )
+      }
+      <article
+        class="prose prose-lg prose-neutral dark:prose-invert mb-5 max-w-none text-pretty md:mb-8"
+      >
+        <Content />
+      </article>
+      <div
+        class="mx-auto grid max-w-(--breakpoint-lg) gap-y-5 sm:flex sm:items-center sm:justify-between sm:gap-y-0"
+      >
+        <div
+          class="flex flex-wrap gap-x-2 gap-y-1 sm:flex-nowrap sm:items-center sm:gap-y-0"
+        >
+          {
+            post.data.tags?.map((tag: string) => (
+              <a
+                href={`/blog/tags/${tag}/`}
+                class="inline-flex items-center gap-x-1.5 rounded-lg bg-neutral-400/30 px-3 py-1.5 text-xs font-medium text-primary outline-hidden transition duration-300 hover:bg-blue-600 hover:text-white focus:outline-hidden focus-visible:ring-3 focus-visible:outline-hidden dark:bg-neutral-700/60 dark:hover:bg-blue-600 dark:hover:text-white"
+              >
+                {capitalize(tag)}
+              </a>
+            ))
+          }
+        </div>
+        <div class="flex items-center justify-end gap-x-1.5">
+          <Bookmark />
+          <div
+            class="mx-3 block h-4 border-e border-neutral-400 dark:border-neutral-500"
+          >
+          </div>
+          <div class="inline-flex">
+            <SocialShare pageTitle={post.data.title} />
+          </div>
+        </div>
+      </div>
+    </div>
+    {/* Table of contents (desktop: sticky sidebar) */}
+    {
+      showToc && (
+        <aside id="toc-desktop" class="hidden xl:block">
+          <div class="sticky top-24">
+            <p class="mb-3 font-mono text-xs font-semibold tracking-[0.16em] text-accent uppercase">
+              On this page
+            </p>
+            <TableOfContents headings={toc} />
+          </div>
+        </aside>
+      )
+    }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <div class="mb-10 max-w-2xl">
+      <h2
+        class="text-2xl font-bold text-balance text-primary md:text-4xl md:leading-tight"
+      >
+        Related articles
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-2 gap-6">
+      {relatedPosts.map(entry => <CardRelated blogEntry={entry} />)}
+    </div>
+  </section>
+
+  <style is:global>
+    html {
+      scroll-behavior: smooth;
+    }
+    article :is(h2, h3) {
+      scroll-margin-top: 6rem;
+    }
+    #toc-desktop .toc-active {
+      color: #008080;
+      border-color: #008080;
+      font-weight: 600;
+    }
+    :global(.dark) #toc-desktop .toc-active {
+      color: #2dd4bf;
+      border-color: #2dd4bf;
+    }
+  </style>
+
+  <script>
+    // Scroll-spy: highlight the desktop ToC link for the section in view.
+    const links = Array.from(
+      document.querySelectorAll('#toc-desktop [data-toc-link]')
+    );
+    const article = document.querySelector('article');
+    if (links.length && article) {
+      const bySlug = new Map(
+        links.map((l) => [l.getAttribute('data-toc-link'), l])
+      );
+      const heads = Array.from(article.querySelectorAll('h2, h3')).filter(
+        (h) => h.id
+      );
+      const setActive = (id: string) => {
+        links.forEach((l) => l.classList.remove('toc-active'));
+        bySlug.get(id)?.classList.add('toc-active');
+      };
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort(
+              (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+            );
+          if (visible[0]) setActive((visible[0].target as HTMLElement).id);
+        },
+        { rootMargin: '0px 0px -80% 0px', threshold: 0 }
+      );
+      heads.forEach((h) => observer.observe(h));
+    }
+  </script>
+</MainLayout>

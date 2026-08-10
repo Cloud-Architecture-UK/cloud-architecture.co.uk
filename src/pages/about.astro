@@ -1,0 +1,85 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { SITE } from '@data/constants';
+
+const pageTitle = `About | ${SITE.title}`;
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription="About Cloud Architecture and Mark Hughes: hands-on Microsoft 365 and Azure security, mapped to CIS, NIST, ISO 27001, NCSC and NIS2."
+>
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
+    <div class="flex flex-col items-center text-center">
+      <img
+        src="/mark.jpg"
+        alt="Mark Hughes"
+        width="112"
+        height="112"
+        class="mb-6 h-28 w-28 rounded-full object-cover ring-4 ring-blue-500/20"
+      />
+      <p
+        class="mb-2 text-sm font-bold tracking-wider text-accent uppercase"
+      >
+        About Cloud Architecture
+      </p>
+      <h1
+        class="mb-4 text-4xl font-bold tracking-tight text-primary md:text-5xl"
+      >
+        Written by Mark Hughes
+      </h1>
+      <p
+        class="max-w-2xl text-lg text-pretty text-primary"
+      >
+        Cloud Architecture is a hands-on Microsoft 365 and Azure security
+        resource. Every control gets the same treatment: the exact portal
+        steps, the reasoning behind them, and the PowerShell to automate it,
+        all mapped to CIS, NIST, ISO 27001, NCSC and NIS2.
+      </p>
+    </div>
+
+    <div
+      class="mt-12 space-y-6 text-base leading-relaxed text-primary"
+    >
+      <p>
+        I'm Mark. I build and secure Microsoft 365 and Azure tenants for a
+        living. This site is where I write it all down properly: the actual
+        click path, why the setting matters, and a re-runnable script so you can
+        apply it at scale. Not another checklist that says "enable MFA" and
+        leaves you there.
+      </p>
+      <p>
+        Everything here is written for real, production tenants: break-glass
+        accounts first, Conditional Access in report-only before you enforce,
+        and staged rollouts. The guides work on any Microsoft 365 licence, with
+        the licensing caveated per control, and the companion PowerShell is
+        idempotent and safe to re-run.
+      </p>
+      <p>
+        If there's a control you'd like covered, or something here you'd do
+        differently, I'd genuinely like to hear it.
+      </p>
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <a
+        href="/blog"
+        class="inline-flex items-center justify-center gap-x-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-bold text-white transition duration-300 hover:bg-blue-700"
+      >
+        Read the blog
+      </a>
+      <a
+        href="https://www.linkedin.com/in/markdhughes91/"
+        class="inline-flex items-center justify-center gap-x-2 rounded-lg border border-hairline px-5 py-3 text-sm font-bold text-primary transition duration-300 hover:border-blue-500 hover:text-accent"
+      >
+        LinkedIn
+      </a>
+      <a
+        href="https://github.com/markdhughes"
+        class="inline-flex items-center justify-center gap-x-2 rounded-lg border border-hairline px-5 py-3 text-sm font-bold text-primary transition duration-300 hover:border-blue-500 hover:text-accent"
+      >
+        GitHub
+      </a>
+    </div>
+  </section>
+</MainLayout>

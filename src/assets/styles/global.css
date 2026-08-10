@@ -1,0 +1,232 @@
+@import 'tailwindcss';
+
+/* Preline UI */
+@source '../../../node_modules/preline/dist/*.js';
+@import '../../../node_modules/preline/variants.css';
+
+/* Plugins */
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* https://tailwindcss.com/docs/colors#customizing-your-colors */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-black: #000;
+  --color-white: #fff;
+
+  /* Brand type system: rounded body/UI, serif display headings, mono eyebrows. */
+  --font-sans: ui-rounded, 'SF Pro Rounded', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+  --font-serif: ui-serif, 'New York', Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'SF Mono', 'SFMono-Regular', Menlo, monospace;
+
+  /* Brand roles (v2 Teal, approved). Values switch light/dark via the --ca-*
+     custom properties below, so text-primary / text-secondary / text-accent /
+     bg-surface / bg-card / bg-surface-alt / border-hairline all theme-switch
+     without needing a dark: variant on every element. */
+  --color-primary: var(--ca-primary);
+  --color-secondary: var(--ca-secondary);
+  --color-accent: var(--ca-accent);
+  --color-accent-strong: var(--ca-accent-strong);
+  --color-surface: var(--ca-surface);
+  --color-surface-alt: var(--ca-surface-alt);
+  --color-card: var(--ca-card);
+  --color-hairline: var(--ca-hairline);
+  --color-field-border: var(--ca-field-border);
+
+  --color-gray-50: oklch(0.985 0.002 247.839);
+  --color-gray-100: oklch(0.967 0.003 264.542);
+  --color-gray-200: oklch(0.928 0.006 264.531);
+  --color-gray-300: oklch(0.872 0.01 258.338);
+  --color-gray-400: oklch(0.707 0.022 261.325);
+  --color-gray-500: oklch(0.551 0.027 264.364);
+  --color-gray-600: oklch(0.446 0.03 256.802);
+  --color-gray-700: oklch(0.373 0.034 259.733);
+  --color-gray-800: oklch(0.278 0.033 256.848);
+  --color-gray-900: oklch(0.21 0.034 264.665);
+  --color-gray-950: oklch(0.13 0.028 261.692);
+
+  --color-indigo-50: oklch(0.962 0.018 272.314);
+  --color-indigo-100: oklch(0.93 0.034 272.788);
+  --color-indigo-200: oklch(0.87 0.065 274.039);
+  --color-indigo-300: oklch(0.785 0.115 274.713);
+  --color-indigo-400: oklch(0.673 0.182 276.935);
+  --color-indigo-500: oklch(0.585 0.233 277.117);
+  --color-indigo-600: oklch(0.511 0.262 276.966);
+  --color-indigo-700: oklch(0.457 0.24 277.023);
+  --color-indigo-800: oklch(0.398 0.195 277.366);
+  --color-indigo-900: oklch(0.359 0.144 278.697);
+  --color-indigo-950: oklch(0.257 0.09 281.288);
+
+  --color-neutral-50: oklch(0.985 0 0);
+  --color-neutral-100: oklch(0.97 0 0);
+  --color-neutral-200: oklch(0.922 0 0);
+  --color-neutral-300: oklch(0.87 0 0);
+  --color-neutral-400: oklch(0.708 0 0);
+  --color-neutral-500: oklch(0.556 0 0);
+  --color-neutral-600: oklch(0.439 0 0);
+  --color-neutral-700: oklch(0.371 0 0);
+  --color-neutral-800: oklch(0.269 0 0);
+  --color-neutral-900: oklch(0.205 0 0);
+  --color-neutral-950: oklch(0.145 0 0);
+
+  --color-slate-50: oklch(0.984 0.003 247.858);
+  --color-slate-100: oklch(0.968 0.007 247.896);
+  --color-slate-200: oklch(0.929 0.013 255.508);
+  /* Brand accent (blue-* utilities) remapped to Cloud Architecture TEAL.
+     text/links/rings = core #008080, hover = deep #006B6B, dark accent = reef. */
+  --color-blue-50: #e6f2f2;
+  --color-blue-100: #d5eaea;
+  --color-blue-200: #aad5d5;
+  --color-blue-300: #80c0c0;
+  --color-blue-400: #80c0c0;
+  --color-blue-500: #55aaaa;
+  --color-blue-600: #008080;
+  --color-blue-700: #006b6b;
+  --color-blue-800: #004040;
+  --color-blue-900: #002b2b;
+  --color-blue-950: #001515;
+
+  --color-yellow-200: #aad5d5;
+  --color-yellow-600: #008080;
+  --color-yellow-700: #006b6b;
+  --color-yellow-800: #004040;
+  --color-yellow-900: #002b2b;
+  --color-yellow-950: #001515;
+
+  /* Primary accent (orange-* utilities = buttons). 400 = core teal, 500 = deep hover. */
+  --color-orange-50: #e6f2f2;
+  --color-orange-100: #d5eaea;
+  --color-orange-200: #aad5d5;
+  --color-orange-300: #80c0c0;
+  --color-orange-400: #008080;
+  --color-orange-500: #006b6b;
+  --color-orange-600: #005555;
+  --color-orange-700: #004040;
+  --color-orange-800: #003535;
+  --color-orange-900: #002b2b;
+  --color-orange-950: #001515;
+
+  --color-red-50: oklch(0.971 0.013 17.38);
+  --color-red-100: oklch(0.936 0.032 17.717);
+  --color-red-200: oklch(0.885 0.062 18.334);
+  --color-red-300: oklch(0.808 0.114 19.571);
+  --color-red-400: oklch(0.704 0.191 22.216);
+  --color-red-500: oklch(0.637 0.237 25.331);
+  --color-red-600: oklch(0.577 0.245 27.325);
+  --color-red-700: oklch(0.505 0.213 27.518);
+  --color-red-800: oklch(0.444 0.177 26.899);
+  --color-red-900: oklch(0.396 0.141 25.723);
+  --color-red-950: oklch(0.258 0.092 26.042);
+
+  --color-zinc-50: oklch(0.985 0 0);
+  --color-zinc-100: oklch(0.967 0.001 286.375);
+  --color-zinc-200: oklch(0.92 0.004 286.32);
+  --color-zinc-300: oklch(0.871 0.006 286.286);
+  --color-zinc-400: oklch(0.705 0.015 286.067);
+  --color-zinc-500: oklch(0.552 0.016 285.938);
+  --color-zinc-600: oklch(0.442 0.017 285.786);
+  --color-zinc-700: oklch(0.37 0.013 285.805);
+  --color-zinc-800: oklch(0.274 0.006 286.033);
+  --color-zinc-900: oklch(0.21 0.006 285.885);
+  --color-zinc-950: oklch(0.141 0.005 285.823);
+}
+
+/* Brand role values — the six roles from the v2 Teal guidelines, one hue,
+   thirteen steps. One text primary and one text secondary per theme; accent is
+   core teal on light, reef teal on dark (core is too dark on black). */
+:root {
+  --ca-primary: #001515; /* text: body + headings (step 975) */
+  --ca-secondary: #006b6b; /* captions, metadata (step 700) */
+  --ca-accent: #008080; /* links, the rule, one CTA (step 600) */
+  --ca-accent-strong: #006b6b; /* accent hover (step 700) */
+  --ca-surface: #ffffff; /* page (step 000) */
+  --ca-surface-alt: #d5eaea; /* wells, code, chips (step 100) */
+  --ca-card: #ffffff; /* cards (step 000) */
+  --ca-hairline: #aad5d5; /* borders, dividers (step 200) */
+  --ca-field-border: #006b6b; /* form inputs — 6.3:1 on white, 5:1 on the mint
+                                 footer; clears WCAG 1.4.11 (3:1) on both */
+}
+.dark {
+  --ca-primary: #ffffff; /* step 000 */
+  --ca-secondary: #aad5d5; /* step 200 */
+  --ca-accent: #55aaaa; /* step 400 */
+  --ca-accent-strong: #008080; /* step 600 */
+  --ca-surface: #001515; /* step 975 */
+  --ca-surface-alt: #002b2b; /* step 950 */
+  --ca-card: #002b2b; /* step 950 */
+  --ca-hairline: #004040; /* step 900 */
+  --ca-field-border: #55aaaa; /* form inputs — 5.5:1 on the dark card (step 400) */
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* --- Cloud Architecture teal brand: type + selection --- */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--ca-surface);
+    color: var(--ca-primary);
+  }
+  /* Display serif is the brand's publication voice — post titles and section
+     heads (h1–h3). Colour inherits from body (text primary) so colour utilities
+     like text-neutral-50 on image-overlay cards still win; only the family and
+     weight are enforced here. Body, kickers and UI keep the rounded/mono faces. */
+  h1,
+  h2,
+  h3,
+  .dc-display {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+}
+::selection {
+  background: var(--ca-surface-alt);
+  color: #001515;
+}
+
+/* Blog article prose (Tailwind Typography) reads from the same role tokens as
+   the marketing pages: text primary for body + headings, accent for links.
+   The tokens theme-switch, so the invert values point at the same vars. */
+.prose {
+  --tw-prose-body: var(--ca-primary);
+  --tw-prose-headings: var(--ca-primary);
+  --tw-prose-bold: var(--ca-primary);
+  --tw-prose-links: var(--ca-accent);
+  --tw-prose-invert-body: var(--ca-primary);
+  --tw-prose-invert-headings: var(--ca-primary);
+  --tw-prose-invert-bold: var(--ca-primary);
+  --tw-prose-invert-links: var(--ca-accent);
+}
+/* Inline links carry the accent and stay underlined for affordance. */
+.prose a {
+  color: var(--ca-accent);
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+}

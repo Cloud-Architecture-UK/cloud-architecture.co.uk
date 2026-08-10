@@ -1,0 +1,43 @@
+---
+const { url, name } = Astro.props;
+
+interface Props {
+  url: string;
+  name: string;
+}
+---
+
+<a
+  id={url === '/' ? 'home' : url.replace('/', '')}
+  href={url}
+  data-astro-prefetch
+  class="rounded-lg text-base font-medium text-secondary ring-zinc-500 outline-hidden hover:text-secondary focus-visible:ring-3 md:py-3 md:text-sm 2xl:text-base dark:ring-zinc-200 dark:hover:text-secondary dark:focus:outline-hidden"
+>
+  {name}
+</a>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let url = window.location.pathname;
+    let navId;
+
+    if (url === '/') {
+      navId = 'home';
+    } else {
+      navId = url.replace('/', '');
+    }
+
+    let nav = document.getElementById(navId);
+
+    if (nav) {
+      nav.classList.remove(
+        'text-secondary',
+        'dark:text-secondary',
+        'hover:text-secondary',
+        'dark:hover:text-secondary'
+      );
+      nav.classList.add('text-accent', 'dark:text-blue-500');
+      nav.setAttribute('aria-current', 'page');
+    }
+  });
+</script>

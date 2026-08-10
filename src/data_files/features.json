@@ -1,0 +1,22 @@
+[
+  {
+    "heading": "Every control, three ways",
+    "content": "Every control done three ways, so you can click through it by hand, understand what it actually defends against, or run the script and apply it across the whole tenant.",
+    "svg": "groups"
+  },
+  {
+    "heading": "Mapped to the frameworks auditors ask about",
+    "content": "Each guide cites the exact CIS Microsoft 365 Benchmark item and NIST control it satisfies, and lines up with ISO 27001, NCSC and NIS2. Evidence it against whichever one your audit uses.",
+    "svg": "verified"
+  },
+  {
+    "heading": "Scripts that are safe to re-run",
+    "content": "Idempotent PowerShell, report-only first so you see exactly what would change before you enforce it. Run it again next quarter and nothing breaks.",
+    "svg": "books"
+  },
+  {
+    "heading": "Built for real tenants",
+    "content": "Written for production, not a lab. Break-glass account before you touch Conditional Access, staged rollout, licensing caveated per control.",
+    "svg": "frame"
+  }
+]

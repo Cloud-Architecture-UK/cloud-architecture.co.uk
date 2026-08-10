@@ -1,0 +1,61 @@
+---
+// Import section components
+import MainLayout from '@/layouts/MainLayout.astro';
+import Btn404 from '@components/ui/buttons/Btn404.astro';
+import { SITE } from '@data/constants';
+
+const pageTitle = `Page not found | ${SITE.title}`;
+const subTitle = "That page doesn't exist.";
+const content =
+  'It may have moved, or the link was wrong. Head back to the blog or the homepage.';
+---
+
+<MainLayout title={pageTitle} hideFooter>
+  <section class="min-h-[calc(100svh-5.5rem)]" aria-labelledby="subtitle">
+    <div
+      class="pointer-events-none fixed inset-0 z-10 grid place-content-center px-4"
+    >
+      <div
+        class="pointer-events-auto mx-auto max-w-(--breakpoint-sm) text-center"
+      >
+        <h1
+          class="text-dark mb-4 text-7xl font-extrabold text-accent lg:text-9xl"
+        >
+          404
+        </h1>
+        <p
+          id="subtitle"
+          class="mb-4 text-3xl font-bold tracking-tight text-balance text-primary md:text-4xl"
+        >
+          {subTitle}
+        </p>
+        <p
+          id="content"
+          class="mb-4 text-lg text-pretty text-primary"
+        >
+          {content}
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="/"
+            class="group inline-flex items-center justify-center gap-x-2 rounded-lg border border-transparent bg-blue-500 px-4 py-3 text-sm font-bold text-primary ring-zinc-500 outline-hidden transition duration-300 hover:bg-blue-600 focus-visible:ring-3 2xl:text-base dark:ring-zinc-200"
+          >
+            Back to home
+          </a>
+          <Btn404 title="Go back" id="go-back" />
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<script>
+  const goBackButton = document.getElementById('go-back');
+  goBackButton?.addEventListener('click', () => {
+    if (window.history.length > 1) {
+      history.back();
+    } else {
+      window.location.href = '/';
+    }
+  });
+</script>

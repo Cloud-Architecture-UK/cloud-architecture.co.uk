@@ -1,0 +1,114 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { SITE } from '@data/constants';
+
+const pageTitle = `Frameworks & mappings | ${SITE.title}`;
+
+const frameworks = [
+  {
+    name: 'CIS Microsoft 365 Foundations Benchmark',
+    tag: 'Configuration baseline',
+    what: 'A prescriptive, consensus-built configuration baseline for Microsoft 365: the exact settings, at recommended values.',
+    map: 'Every guide cites the specific CIS recommendation it satisfies, so each control traces to a numbered benchmark item you can evidence.',
+  },
+  {
+    name: 'NIST: CSF 2.0, 800-53 and 800-207',
+    tag: 'Control catalogue · Zero Trust',
+    what: 'The Cybersecurity Framework 2.0 functions (Govern, Identify, Protect, Detect, Respond, Recover), the 800-53 control catalogue, and the 800-207 Zero Trust architecture.',
+    map: 'The hardening implements the Protect and Detect functions and the Zero Trust principles (verify explicitly, least privilege, assume breach), mapped to the supporting 800-53 controls.',
+  },
+  {
+    name: 'ISO/IEC 27001:2022',
+    tag: 'ISMS · Annex A',
+    what: 'The international standard for an information security management system, with 93 Annex A controls across organisational, people, physical and technological themes.',
+    map: 'The Microsoft 365 controls here provide the technical evidence for the relevant Annex A controls that an ISO 27001 audit expects to see: access control (A.8), identity, logging and monitoring.',
+  },
+  {
+    name: 'NCSC (UK): CAF, Cyber Essentials and 10 Steps',
+    tag: 'UK guidance',
+    what: 'The National Cyber Security Centre\'s Cyber Assessment Framework (objectives A to D), Cyber Essentials (five technical controls), and 10 Steps to Cyber Security.',
+    map: 'The identity, access, patching and malware-protection guidance implements the Cyber Essentials controls and supports the CAF outcomes for managing security risk and protecting against attack.',
+  },
+  {
+    name: 'NIS2 (EU Directive 2022/2555)',
+    tag: 'Regulatory',
+    what: 'The EU directive setting cyber risk-management and incident-reporting obligations for essential and important entities.',
+    map: 'The MFA, Conditional Access, audit logging and incident-response guidance supports the Article 21 risk-management measures and the reporting duties NIS2 requires.',
+  },
+  {
+    name: 'Also relevant',
+    tag: 'Cross-mapped',
+    what: 'ACSC Essential Eight, SOC 2, DORA and UK GDPR / DPA 2018.',
+    map: 'The same hardening (MFA, least privilege, logging, backup and patching) provides evidence toward these too. The control sets overlap far more than they differ.',
+  },
+];
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription="How Cloud Architecture's Microsoft 365 and Azure hardening maps to CIS, NIST, ISO 27001, NCSC and NIS2."
+>
+  <section class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <p
+        class="mb-3 font-mono text-xs font-semibold tracking-[0.16em] text-accent uppercase"
+      >
+        Frameworks &amp; mappings
+      </p>
+      <h1
+        class="mb-5 text-4xl font-bold tracking-tight text-primary md:text-5xl"
+      >
+        Do the work once, evidence it everywhere
+      </h1>
+      <p
+        class="text-lg text-pretty text-primary"
+      >
+        Security frameworks overlap far more than they differ. Every control on
+        this site is written once, in full, and mapped to the frameworks
+        auditors actually ask about.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-5 sm:grid-cols-2">
+      {
+        frameworks.map((f) => (
+          <div class="rounded-2xl border border-hairline bg-card p-6">
+            <p class="mb-2 font-mono text-[11px] font-semibold tracking-[0.14em] text-accent uppercase">
+              {f.tag}
+            </p>
+            <h2 class="mb-3 text-xl leading-snug font-semibold text-primary">
+              {f.name}
+            </h2>
+            <p class="mb-4 text-sm leading-relaxed text-primary">
+              {f.what}
+            </p>
+            <p class="border-t border-hairline pt-4 text-sm leading-relaxed text-primary">
+              <span class="font-semibold text-primary">
+                How it maps:{' '}
+              </span>
+              {f.map}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p
+      class="mx-auto mt-12 max-w-3xl text-center text-sm text-secondary"
+    >
+      Each blog post cites the specific CIS Benchmark recommendation and NIST
+      control it satisfies; those same controls line up with ISO 27001, NCSC and
+      NIS2 through the mappings above. Per-post cross-framework tables are being
+      expanded.
+    </p>
+
+    <div class="mt-8 flex justify-center">
+      <a
+        href="/blog"
+        class="inline-flex items-center justify-center gap-x-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-bold text-white transition duration-300 hover:bg-blue-700"
+      >
+        Read the guides
+      </a>
+    </div>
+  </section>
+</MainLayout>

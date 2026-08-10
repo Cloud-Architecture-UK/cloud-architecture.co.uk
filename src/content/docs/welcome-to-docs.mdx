@@ -1,0 +1,52 @@
+---
+title: Cloud Architecture Docs
+head:
+  - tag: title
+    content: Cloud Architecture Docs
+description: 'Structured reference for hardening Microsoft 365 and Azure: portal steps, reasoning, and PowerShell, mapped to CIS, NIST, ISO 27001, NCSC and NIS2. In progress.'
+template: splash
+editUrl: false
+lastUpdated: false
+next: false
+hero:
+  title: Docs are on the way
+  tagline: 'A structured reference for Microsoft 365 and Azure hardening: the portal steps, the reasoning, and the PowerShell. Being written now.'
+  actions:
+    - text: Read the blog
+      icon: right-arrow
+      variant: primary
+      link: /blog
+    - text: Request a topic
+      icon: external
+      variant: minimal
+      link: https://github.com/Cloud-Architecture-UK
+---
+
+import '@styles/starlight_main.css';
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+The docs will collect the blog's guidance into a structured reference you can search and cite. Until then, everything lives on the blog.
+
+<CardGrid>
+
+<Card title="Baseline" icon="document">
+  The identity and access controls every Microsoft 365 tenant should have,
+  start to finish.
+</Card>
+
+<Card title="Controls" icon="seti:eslint">
+  Per-control walkthroughs: the portal steps, the reasoning behind them, and
+  the PowerShell to automate them.
+</Card>
+
+<Card title="Framework mapping" icon="seti:puppet">
+  How each control maps back to the CIS Microsoft 365 Benchmark and the
+  relevant NIST controls.
+</Card>
+
+<Card title="Automation" icon="seti:terraform">
+  Idempotent scripts that run report-only first, so you preview the impact
+  before you enforce anything.
+</Card>
+
+</CardGrid>

@@ -1,0 +1,57 @@
+---
+// Cloud Architecture brand lockup: cloud-outline mark with a teal underline
+// stroke + "Cloud Architecture" wordmark (bold first word, -3% tracking).
+// All proportions derive from `markSize` so the lockup scales as one unit
+// (nav uses the 30px default; the homepage hero passes a larger markSize).
+interface Props {
+  class?: string;
+  markSize?: number;
+}
+const { class: className, markSize = 30 } = Astro.props;
+
+// Proportions locked to the 30px nav default (gap 8px, nudge 3px, text 19.2px).
+const gap = markSize * (8 / 30);
+const nudge = markSize * (3 / 30);
+const fontSize = markSize * (19.2 / 30);
+// Stroke widths are in viewBox units; the browser scales them with the SVG,
+// so they stay constant regardless of markSize.
+const strokeMain = 3.2;
+const strokeLine = 3.6;
+---
+
+<span
+  class={`inline-flex items-center leading-none ${className ?? ''}`}
+  style={`gap: ${gap}px;`}
+>
+  <svg
+    viewBox="0 0 40 40"
+    width={markSize}
+    height={markSize}
+    fill="none"
+    aria-hidden="true"
+    class="relative shrink-0"
+    style={`top: ${nudge}px;`}
+  >
+    <path
+      d="M10.4 22h19.2a6 6 0 0 0 .84-11.95A9 9 0 0 0 12.32 11.32 5.64 5.64 0 0 0 10.4 22Z"
+      class="stroke-neutral-900 dark:stroke-white"
+      stroke-width={strokeMain}
+      stroke-linejoin="round"></path>
+    <path
+      d="M10.45 29h9"
+      class="stroke-neutral-900 dark:stroke-white"
+      stroke-width={strokeLine}
+      stroke-linecap="round"></path>
+    <path
+      d="M23.45 29h9"
+      stroke="#008080"
+      stroke-width={strokeLine}
+      stroke-linecap="round"></path>
+  </svg>
+  <span
+    class="leading-none font-normal tracking-[-0.03em] whitespace-nowrap text-primary dark:text-white"
+    style={`font-size: ${fontSize}px;`}
+  >
+    <span class="font-bold">Cloud</span> Architecture
+  </span>
+</span>

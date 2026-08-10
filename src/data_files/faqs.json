@@ -1,0 +1,29 @@
+{
+  "subTitle": "Ask me anything about Microsoft 365 and Azure hardening, and get straight, practical answers.",
+  "faqs": [
+    {
+      "question": "Who is Cloud Architecture for?",
+      "answer": "Anyone responsible for securing a Microsoft 365 or Azure tenant: IT admins, security engineers, MSPs, and consultants. The guides assume you have access to the admin portals and can run PowerShell against your tenant."
+    },
+    {
+      "question": "Do I need PowerShell to follow along?",
+      "answer": "No. Every control is written up as portal steps first, so you can click through it by hand. The PowerShell is there when you want to automate the same change across many settings, users, or tenants."
+    },
+    {
+      "question": "Are the scripts safe to run in production?",
+      "answer": "The scripts are designed to be idempotent and ship in report-only mode first, so you can preview exactly what would change before enforcing anything. Always review, test in a pilot group, and keep a break-glass account before rolling out broadly."
+    },
+    {
+      "question": "Which frameworks does this map to?",
+      "answer": "Each guide references the specific CIS Microsoft 365 Benchmark recommendation and the NIST control it supports. Because the control sets overlap, that same work lines up with ISO 27001, the NCSC Cyber Assessment Framework and Cyber Essentials, and NIS2. The Frameworks page explains how each one maps, so you can evidence your hardening against whichever framework your audit uses."
+    },
+    {
+      "question": "How often is the content updated?",
+      "answer": "Microsoft changes portals and defaults frequently, so guides are revised as the products change. Blog posts are dated, and the docs reflect the current recommended approach."
+    },
+    {
+      "question": "Can I request a topic?",
+      "answer": "Yes. Open an issue on the GitHub organisation with what you are trying to secure, and it may become a future guide or script."
+    }
+  ]
+}
