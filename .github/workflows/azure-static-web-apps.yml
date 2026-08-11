@@ -7,6 +7,12 @@ on:
     types: [opened, synchronize, reopened, closed]
     branches: [master]
 
+# Least privilege: the deploy needs to read the repo and comment preview URLs
+# on PRs, nothing more. Caps the blast radius of a compromised step/dependency.
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   build_and_deploy:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
