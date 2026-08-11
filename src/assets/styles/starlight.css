@@ -7,43 +7,41 @@
   }
 }
 
-/* Dark mode colors. */
+/* Dark mode colors — Cloud Architecture v2 Teal ramp. */
 :root {
-  --border: hsla(var(--border-neutral), 0.4);
-  --backdrop-color: #272727cc;
-  --sl-color-accent: #008080;
+  --border: #004040;
+  --backdrop-color: rgba(0, 43, 43, 0.8);
+  --sl-color-accent: #55aaaa;
   --sl-color-accent-high: #aad5d5;
-  --sl-color-accent-low: #004040;
-  --sl-color-black: #181818;
-  --sl-color-gray-1: #eee;
-  --sl-color-gray-2: #c2c2c2;
-  --sl-color-gray-3: #8b8b8b;
-  --sl-color-gray-4: #585858;
-  --sl-color-gray-5: #383838;
-  --sl-color-gray-6: #272727;
-  --sl-color-white: #fff;
-  --list-marker-color: #008080;
-  --border-neutral: 0, 0%, 25.1%;
+  --sl-color-accent-low: #002b2b;
+  --sl-color-black: #001515;
+  --sl-color-gray-1: #d5eaea;
+  --sl-color-gray-2: #aad5d5;
+  --sl-color-gray-3: #55aaaa;
+  --sl-color-gray-4: #006b6b;
+  --sl-color-gray-5: #004040;
+  --sl-color-gray-6: #002b2b;
+  --sl-color-white: #ffffff;
+  --list-marker-color: #55aaaa;
 }
 
-/* Light mode colors. */
+/* Light mode colors — Cloud Architecture v2 Teal ramp. */
 :root[data-theme='light'] {
-  --border: hsla(var(--border-yellow), 0.4);
-  --backdrop-color: #f6f6f699;
+  --border: #aad5d5;
+  --backdrop-color: rgba(255, 255, 255, 0.7);
   --sl-color-accent: #008080;
-  --sl-color-accent-high: #004040;
-  --sl-color-accent-low: #aad5d5;
-  --sl-color-black: #fff;
-  --sl-color-gray-1: #272727;
-  --sl-color-gray-2: #383838;
-  --sl-color-gray-3: #585858;
-  --sl-color-gray-4: #8b8b8b;
-  --sl-color-gray-5: #c2c2c2;
-  --sl-color-gray-6: #eee;
-  --sl-color-gray-7: #f6f6f6;
-  --sl-color-white: #181818;
+  --sl-color-accent-high: #006b6b;
+  --sl-color-accent-low: #d5eaea;
+  --sl-color-black: #ffffff;
+  --sl-color-gray-1: #002b2b;
+  --sl-color-gray-2: #005555;
+  --sl-color-gray-3: #006b6b;
+  --sl-color-gray-4: #80c0c0;
+  --sl-color-gray-5: #aad5d5;
+  --sl-color-gray-6: #d5eaea;
+  --sl-color-gray-7: #eef6f6;
+  --sl-color-white: #001515;
   --list-marker-color: #008080;
-  --border-yellow: 213.3, 96.9%, 87.3%;
 }
 
 header {
@@ -116,30 +114,23 @@ article.card {
   border-color: var(--sl-color-gray-4) !important;
 }
 
-.starlight-aside--tip {
-  background: linear-gradient(45deg, #008080, #2b9595);
-  border: none;
-  border-radius: 0.5rem;
-  color: #66350c;
-}
-
+/* Flat brand asides — the guidelines call for one hue and no gradients. */
+.starlight-aside--tip,
 .starlight-aside--note {
-  background: linear-gradient(45deg, #00b4db, #2193b0);
+  background: var(--sl-color-gray-6);
   border: none;
+  border-inline-start: 3px solid var(--sl-color-accent);
   border-radius: 0.5rem;
-  color: #004558;
+  color: var(--sl-color-white);
 }
 
 .starlight-aside__icon {
   transform: scale(0.8);
 }
 
-.starlight-aside--tip .starlight-aside__title {
-  color: #e8f1ff;
-}
-
+.starlight-aside--tip .starlight-aside__title,
 .starlight-aside--note .starlight-aside__title {
-  color: #bbf3fef7;
+  color: var(--sl-color-accent);
 }
 
 .sl-markdown-content ul:not(:where(.not-content *)) {
@@ -197,6 +188,7 @@ article.card {
 }
 .sl-markdown-content h1,
 .sl-markdown-content h2,
+.sl-markdown-content h3,
 .content-panel h1,
 .hero h1 {
   font-family: ui-serif, 'New York', Georgia, serif;
