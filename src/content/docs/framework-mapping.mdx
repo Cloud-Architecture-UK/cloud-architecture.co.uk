@@ -1,0 +1,31 @@
+---
+title: Framework map
+description: Every control in the Build & Secure Microsoft 365 series against the CIS Microsoft 365 Foundations Benchmark, NIST 800-53, and NCSC / Cyber Essentials — the references each guide actually cites.
+tableOfContents: false
+---
+
+Every guide in the series cites the specific controls it satisfies. This collects them into one place, so you can do the work once and evidence it against whichever framework your audit uses.
+
+The **CIS Microsoft 365 Foundations Benchmark** and **NIST** are the anchors — they're what each post maps to line by line. The NIST references below are **800-53** controls (with **NIST SP 800-207** for the Zero Trust principles). Every row links to the full guide.
+
+| Guide | CIS Benchmark area | NIST 800-53 | NCSC / Cyber Essentials |
+| --- | --- | --- | --- |
+| [Step 1 — Provisioning](/blog/microsoft-365-tenant-provisioning-day-one/) | Org settings, account management | CM-6, AC-2, AC-6 | Secure configuration |
+| [Step 2 — Break-glass, least privilege, PIM](/blog/break-glass-accounts-least-privilege-pim/) | Account management, least privilege | AC-2, AC-6, CP-2 · SP 800-207 | User access control |
+| [Step 3 — Conditional Access](/blog/conditional-access-baseline-every-tenant-needs/) | Access enforcement | Zero Trust — verify explicitly (SP 800-207) | User access control |
+| [Step 4 — Passwordless & strong MFA](/blog/passwordless-mfa-microsoft-365/) | Strong authentication | IA-2, IA-5 · SP 800-207 | User access control |
+| [Step 5 — Securing Exchange Online](/blog/secure-exchange-online-anti-phishing-dmarc-defender/) | Email security | SC-8, SI-8, SI-4 | Malware protection |
+| [Step 6 — Data protection with Purview](/blog/purview-sensitivity-labels-dlp-retention/) | Data protection | SC-28, AC-16, SI-12 | — |
+| [Step 7 — App consent & external sharing](/blog/microsoft-365-app-consent-and-external-sharing/) | App governance, information sharing | AC-4, AC-6, AC-21, AC-3 | User access control, secure configuration |
+| [Step 8 — Audit logging, alerts & Secure Score](/blog/microsoft-365-audit-logging-alerts-secure-score/) | Logging and monitoring | AU-2, AU-6, SI-4 | — |
+| [Step 9 — Launch checklist](/blog/microsoft-365-tenant-launch-checklist/) | Aggregate of the above | Aggregate of the above | — |
+| [Bonus — Copilot governance](/blog/securing-microsoft-365-copilot-governance/) | Data governance for AI | SC-28, AC-16 (data protection) | — |
+| [Bonus — Hardening Teams](/blog/hardening-microsoft-teams/) | Section 8 — Teams | AC-3, AC-4, SC-7 | User access control, secure configuration |
+| [Bonus — Backup & recovery](/blog/microsoft-365-backup-and-recovery/) | Resilience | CP-9, CP-10 | Recovery (NCSC backup guidance) |
+| [Bonus — Account compromise response](/blog/microsoft-365-account-compromise-response/) | Incident response | IR-4, IR-6, AC-2 | User access control (NCSC incident management) |
+
+The [Foundations](/start-here/#foundations) posts are the groundwork these controls sit on (identity, users, groups, roles and licensing) rather than controls in their own right, so they're not listed as rows here.
+
+## ISO 27001 and NIS2
+
+The guides don't cite ISO 27001 or NIS2 clause by clause, because the control sets overlap: the same CIS and NIST work above is what an ISO 27001 audit expects to see as technical evidence (Annex A), and it supports the Article 21 risk-management measures NIS2 requires. The [Frameworks page](/frameworks) explains how each one maps. Do the work once, evidence it everywhere.

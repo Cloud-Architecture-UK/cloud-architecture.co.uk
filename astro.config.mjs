@@ -33,8 +33,17 @@ export default defineConfig({
     sitemap(),
     starlight({
       title: 'Cloud Architecture Docs',
-      // Docs are a work in progress: a single splash page for now. Add
-      // sidebar groups here as real reference pages are written.
+      sidebar: [
+        { label: 'Overview', link: '/welcome-to-docs/' },
+        { label: 'Start here', link: '/start-here/' },
+        {
+          label: 'Reference',
+          items: [
+            { label: 'Framework map', link: '/framework-mapping/' },
+            { label: 'Licensing map', link: '/licensing/' },
+          ],
+        },
+      ],
       social: [
         {
           icon: 'linkedin',

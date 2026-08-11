@@ -1,0 +1,47 @@
+---
+title: Start here
+description: The Microsoft 365 hardening path in order — foundations first, then the nine-step build, then the bonus rounds. Every step links to the full guide.
+tableOfContents: false
+---
+
+This is the whole **Build & Secure Microsoft 365** series in the order I'd actually do it. Work top to bottom for a new tenant, or jump to the step you need. Each link is the full guide: the portal steps, the reasoning, and the PowerShell.
+
+If you only read one thing first, read the [licensing map](/licensing/) — it tells you which controls you can even turn on before you start.
+
+## Foundations
+
+Understand what you're hardening before you touch a setting.
+
+1. [Set Up and Secure a Microsoft 365 Tenant (New or Existing)](/blog/setup-secure-microsoft-365-tenant-from-scratch/) — the map for everything below.
+2. [What Microsoft Entra ID Actually Is](/blog/microsoft-entra-id-fundamentals-primer/) — the identity layer every later control sits on.
+3. [Managing Users](/blog/microsoft-365-managing-users/) — joiners, and the leaver process that actually closes the hole.
+4. [Groups and Group-Based Licensing](/blog/microsoft-365-groups-and-group-based-licensing/) — get this right early and every later step gets easier to target.
+5. [Admin Roles and Least Privilege](/blog/microsoft-entra-admin-roles-and-rbac/) — the narrower Entra roles to hand out instead of Global Admin.
+6. [Microsoft 365 Licensing and Editions](/blog/microsoft-365-licensing-for-security/) — what each edition unlocks, so you buy the controls you need.
+
+## The build — Steps 1 to 9
+
+The tenant hardening itself, in sequence.
+
+1. [Provisioning the Tenant](/blog/microsoft-365-tenant-provisioning-day-one/) — the first-ten-minutes decisions you can't take back.
+2. [Break-Glass, Least Privilege and PIM](/blog/break-glass-accounts-least-privilege-pim/) — lock down standing admin access.
+3. [The Conditional Access Baseline](/blog/conditional-access-baseline-every-tenant-needs/) — where Zero Trust stops being a slogan.
+4. [Passwordless and Strong MFA](/blog/passwordless-mfa-microsoft-365/) — phishing-resistant sign-in, rolled out without stranding anyone.
+5. [Securing Exchange Online](/blog/secure-exchange-online-anti-phishing-dmarc-defender/) — anti-phishing, the three email-auth records, and Defender.
+6. [Data Protection with Purview](/blog/purview-sensitivity-labels-dlp-retention/) — a small, usable sensitivity-label and DLP starting point.
+7. [App Consent and External Sharing](/blog/microsoft-365-app-consent-and-external-sharing/) — close the side doors MFA doesn't guard.
+8. [Audit Logging, Alerts and Secure Score](/blog/microsoft-365-audit-logging-alerts-secure-score/) — make the tenant something you can see into.
+9. [The Launch Checklist](/blog/microsoft-365-tenant-launch-checklist/) — work down it before you hand the tenant over.
+
+## Bonus rounds
+
+The extras that come up on real tenants once the baseline is in.
+
+- [Securing Microsoft 365 Copilot Before You Switch It On](/blog/securing-microsoft-365-copilot-governance/) — Copilot respects your permissions, which is exactly the problem.
+- [Hardening Microsoft Teams Meetings and External Access](/blog/hardening-microsoft-teams/) — Teams ships open; close it down.
+- [Microsoft 365 Backup and Recovery](/blog/microsoft-365-backup-and-recovery/) — retention is not backup. Here's the difference.
+- [Responding to a Compromised Microsoft 365 Account](/blog/microsoft-365-account-compromise-response/) — the runbook for when one gets taken over.
+
+---
+
+Every guide above cites the specific controls it satisfies. The [framework map](/framework-mapping/) collects those into one table, so you can evidence the work against CIS, NIST, ISO 27001, NCSC and NIS2.

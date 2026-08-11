@@ -1,0 +1,35 @@
+---
+title: Licensing map
+description: Which Microsoft 365 edition and Entra ID tier each control in the series needs, so you can tell what you can turn on before you start.
+tableOfContents: false
+---
+
+Most of the hardening in this series works on **any** Microsoft 365 business or enterprise plan. A handful of controls need a premium identity tier or Defender/Purview capability, and each guide calls that out inline. This is the whole picture in one place.
+
+Rule of thumb from the [licensing guide](/blog/microsoft-365-licensing-for-security/): **CIS Level 1 is achievable on Business Premium or E3**, and **Level 2 leans on E5** capabilities.
+
+## The tiers that matter
+
+- **Entra ID P1** — included with **Business Premium, E3 and E5**. Unlocks Conditional Access, group-based licensing, and the full authentication-methods / SSPR / banned-password experience.
+- **Entra ID P2** — included with **E5** (or as an add-on). Unlocks PIM, risk-based Conditional Access and Identity Protection, and automated access reviews.
+- **Defender for Office 365** — **Plan 1** (Safe Links / Safe Attachments) is bundled in **Business Premium** and an add-on for E3; **Plan 2** comes with **E5**.
+- **Purview (advanced)** — auto-labelling, full DLP coverage, records management and long retention are **E5 / Purview** territory.
+
+## What each guide needs
+
+| Guide | Works on | Premium tier for the extras |
+| --- | --- | --- |
+| [Step 1 — Provisioning](/blog/microsoft-365-tenant-provisioning-day-one/) | Any plan (Basic, Standard, Premium, E3, E5) | Group-based licensing needs **Entra ID P1** |
+| [Step 2 — Break-glass, PIM](/blog/break-glass-accounts-least-privilege-pim/) | Break-glass accounts: any plan | **PIM** needs **Entra ID P2 (E5)** |
+| [Step 3 — Conditional Access](/blog/conditional-access-baseline-every-tenant-needs/) | **Entra ID P1** (Business Premium / E3) | Risk-based policies need **Entra ID P2 (E5)** |
+| [Step 4 — Passwordless & MFA](/blog/passwordless-mfa-microsoft-365/) | Base MFA: any plan | Full methods / SSPR / banned-password: **P1**; risk signals: **P2 (E5)** |
+| [Step 5 — Exchange Online](/blog/secure-exchange-online-anti-phishing-dmarc-defender/) | Anti-phishing, DMARC/SPF/DKIM: any plan | **Defender for Office 365 P1** (Business Premium); **P2** in **E5** |
+| [Step 6 — Purview](/blog/purview-sensitivity-labels-dlp-retention/) | Manual labels, basic DLP & retention: Premium / E3 | Auto-labelling & full DLP: **E5** |
+| [Step 7 — App consent & sharing](/blog/microsoft-365-app-consent-and-external-sharing/) | Almost everything: any business/enterprise plan | App-risk detection & automated access reviews: **P2 (E5)** |
+| [Step 8 — Audit logging](/blog/microsoft-365-audit-logging-alerts-secure-score/) | Audit log, alerts, Secure Score: base plans | Long/custom retention & advanced hunting: **E5** |
+| [Bonus — Copilot governance](/blog/securing-microsoft-365-copilot-governance/) | Copilot: per-user add-on on a qualifying base plan | AI data security (DSPM, DLP for Copilot): **E5 / Purview** |
+| [Bonus — Teams](/blog/hardening-microsoft-teams/) | Meeting & external-access controls: any plan | DLP for Teams, information barriers: **E5 / Purview** |
+| [Bonus — Backup & recovery](/blog/microsoft-365-backup-and-recovery/) | Retention policies: broadly available | Advanced retention & records management: **E5 / Purview** |
+| [Bonus — Account compromise](/blog/microsoft-365-account-compromise-response/) | Containment & investigation: any plan | Risk-based detection & automated response: **Entra ID P2 (E5)** |
+
+Nothing here forces you onto E5. If you're on **Business Premium**, you can stand up a genuinely hardened, CIS Level 1 tenant — the E5 rows are the step up, not the entry price.
