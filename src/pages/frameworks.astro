@@ -7,9 +7,15 @@ const pageTitle = `Frameworks & mappings | ${SITE.title}`;
 const frameworks = [
   {
     name: 'CIS Microsoft 365 Foundations Benchmark',
-    tag: 'Configuration baseline',
+    tag: 'Microsoft 365 baseline',
     what: 'A prescriptive, consensus-built configuration baseline for Microsoft 365: the exact settings, at recommended values.',
-    map: 'Every guide cites the specific CIS recommendation it satisfies, so each control traces to a numbered benchmark item you can evidence.',
+    map: 'Every Microsoft 365 guide cites the specific CIS recommendation it satisfies, so each control traces to a numbered benchmark item you can evidence.',
+  },
+  {
+    name: 'CIS Azure Foundations Benchmark and MCSB',
+    tag: 'Azure baseline',
+    what: 'The Azure counterparts to the Microsoft 365 benchmark: the CIS Microsoft Azure Foundations Benchmark and the Microsoft cloud security benchmark (MCSB), which drives Defender for Cloud.',
+    map: 'The Azure guidance — networking, identity and platform hardening — cites the CIS Azure recommendation and the MCSB control it satisfies, the same way the Microsoft 365 guides cite CIS.',
   },
   {
     name: 'NIST: CSF 2.0, 800-53 and 800-207',
@@ -24,10 +30,16 @@ const frameworks = [
     map: 'The Microsoft 365 controls here provide the technical evidence for the relevant Annex A controls that an ISO 27001 audit expects to see: access control (A.8), identity, logging and monitoring.',
   },
   {
-    name: 'NCSC (UK): CAF, Cyber Essentials and 10 Steps',
+    name: 'NCSC (UK): CAF, Cyber Essentials and Cloud Security Principles',
     tag: 'UK guidance',
-    what: 'The National Cyber Security Centre\'s Cyber Assessment Framework (objectives A to D), Cyber Essentials (five technical controls), and 10 Steps to Cyber Security.',
-    map: 'The identity, access, patching and malware-protection guidance implements the Cyber Essentials controls and supports the CAF outcomes for managing security risk and protecting against attack.',
+    what: 'The National Cyber Security Centre\'s Cyber Assessment Framework (objectives A to D), Cyber Essentials and the audited Cyber Essentials Plus, the 14 Cloud Security Principles, and 10 Steps to Cyber Security.',
+    map: 'Identity, access, patching and malware guidance meets the Cyber Essentials controls (and stands up to a Cyber Essentials Plus audit); the cloud hardening maps to the Cloud Security Principles; and it all supports the CAF outcomes GovAssure assesses UK government against.',
+  },
+  {
+    name: 'UK regulated sectors: NHS DSPT and FCA/PRA',
+    tag: 'Sector-specific',
+    what: 'The NHS Data Security and Protection Toolkit for health and social care, and the FCA/PRA operational-resilience rules (SYSC) for financial services.',
+    map: 'The DSPT now maps to the NCSC CAF, so the CAF work here carries across; and the identity, logging and incident-response controls evidence the operational-resilience expectations the FCA and PRA set (and DORA, for EU-facing firms).',
   },
   {
     name: 'NIS2 (EU Directive 2022/2555)',
@@ -38,8 +50,8 @@ const frameworks = [
   {
     name: 'Also relevant',
     tag: 'Cross-mapped',
-    what: 'ACSC Essential Eight, SOC 2, DORA and UK GDPR / DPA 2018.',
-    map: 'The same hardening (MFA, least privilege, logging, backup and patching) provides evidence toward these too. The control sets overlap far more than they differ.',
+    what: 'CISA SCuBA (US Microsoft 365 baselines), ACSC Essential Eight (Australia), SOC 2, DORA and UK GDPR / DPA 2018.',
+    map: 'The same hardening — MFA, least privilege, logging, backup and patching — provides evidence toward these too. The control sets overlap far more than they differ.',
   },
 ];
 ---
