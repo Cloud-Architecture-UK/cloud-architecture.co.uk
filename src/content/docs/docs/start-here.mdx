@@ -1,10 +1,9 @@
 ---
 title: Start here
 description: The Microsoft 365 hardening path in order — foundations first, then the nine-step build, then the bonus rounds. Every step links to the full guide.
-tableOfContents: false
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside, Steps } from '@astrojs/starlight/components';
 
 <Aside type="note" title="Rolling out">
 The series publishes one guide at a time. Links to posts that aren't live yet won't resolve — the [blog](/blog) shows what's published so far.
@@ -18,6 +17,8 @@ If you only read one thing first, read the [licensing map](/docs/licensing/) —
 
 Understand what you're hardening before you touch a setting.
 
+<Steps>
+
 1. [Set Up and Secure a Microsoft 365 Tenant (New or Existing)](/blog/setup-secure-microsoft-365-tenant-from-scratch/) — the map for everything below.
 2. [What Microsoft Entra ID Actually Is](/blog/microsoft-entra-id-fundamentals-primer/) — the identity layer every later control sits on.
 3. [Managing Users](/blog/microsoft-365-managing-users/) — joiners, and the leaver process that actually closes the hole.
@@ -25,9 +26,13 @@ Understand what you're hardening before you touch a setting.
 5. [Admin Roles and Least Privilege](/blog/microsoft-entra-admin-roles-and-rbac/) — the narrower Entra roles to hand out instead of Global Admin.
 6. [Microsoft 365 Licensing and Editions](/blog/microsoft-365-licensing-for-security/) — what each edition unlocks, so you buy the controls you need.
 
+</Steps>
+
 ## The build — Steps 1 to 9
 
 The tenant hardening itself, in sequence.
+
+<Steps>
 
 1. [Provisioning the Tenant](/blog/microsoft-365-tenant-provisioning-day-one/) — the first-ten-minutes decisions you can't take back.
 2. [Break-Glass, Least Privilege and PIM](/blog/break-glass-accounts-least-privilege-pim/) — lock down standing admin access.
@@ -38,6 +43,8 @@ The tenant hardening itself, in sequence.
 7. [App Consent and External Sharing](/blog/microsoft-365-app-consent-and-external-sharing/) — close the side doors MFA doesn't guard.
 8. [Audit Logging, Alerts and Secure Score](/blog/microsoft-365-audit-logging-alerts-secure-score/) — make the tenant something you can see into.
 9. [The Launch Checklist](/blog/microsoft-365-tenant-launch-checklist/) — work down it before you hand the tenant over.
+
+</Steps>
 
 ## Bonus rounds
 

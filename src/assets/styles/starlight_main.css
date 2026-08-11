@@ -6,57 +6,10 @@
     cursor: pointer;
   }
 }
-/* Dark mode colors. */
-:root {
-  --primary-button-hover: #006b6b;
-  --backdrop-color: #272727cc;
-  --sl-color-accent: #006b6b;
-  --sl-color-accent-high: #aad5d5;
-  --sl-color-accent-low: #004040;
-  --sl-color-black: #181818;
-  --sl-color-gray-1: #eee;
-  --sl-color-gray-2: #c2c2c2;
-  --sl-color-gray-3: #8b8b8b;
-  --sl-color-gray-4: #585858;
-  --sl-color-gray-5: #383838;
-  --sl-color-gray-6: #272727;
-  --sl-color-white: #fff;
-  --yellow-hsl: 217.2, 91.2%, 59.8%;
-  --overlay-yellow: hsla(var(--yellow-hsl), 0.2);
-  --border: hsla(var(--border-neutral), 0.4);
-  --border-neutral: 0, 0%, 25.1%;
-}
 
-/* Light mode colors. */
-:root[data-theme='light'] {
-  --primary-button-hover: #006b6b;
-  --backdrop-color: #f6f6f699;
-  --sl-color-accent: #008080;
-  --sl-color-accent-high: #004040;
-  --sl-color-accent-low: #aad5d5;
-  --sl-color-black: #fff;
-  --sl-color-gray-1: #272727;
-  --sl-color-gray-2: #383838;
-  --sl-color-gray-3: #585858;
-  --sl-color-gray-4: #8b8b8b;
-  --sl-color-gray-5: #c2c2c2;
-  --sl-color-gray-6: #eee;
-  --sl-color-gray-7: #f6f6f6;
-  --sl-color-white: #181818;
-  --yellow-hsl: 217.2, 91.2%, 59.8%;
-  --border-yellow: 213.3, 96.9%, 87.3%;
-  --border: hsla(var(--border-yellow), 0.4);
-}
-
-.page {
-  background:
-    linear-gradient(215deg, var(--overlay-yellow), transparent 40%),
-    radial-gradient(var(--overlay-yellow), transparent 40%) no-repeat center
-      center / cover,
-    radial-gradient(var(--overlay-yellow), transparent 65%) no-repeat center
-      center / cover;
-  background-blend-mode: overlay;
-}
+/* Landing-only styling. All colours come from starlight.css (the v2 Teal brand
+   tokens) — this file must not redefine --sl-color-* or it re-breaks the brand
+   on the splash page. No hero glow: the brand is one hue, flat, no gradients. */
 
 header {
   border: none !important;
@@ -89,11 +42,17 @@ select {
   box-shadow: none;
 }
 
+/* Solid teal primary button, matching the marketing PrimaryCTA. */
+.sl-link-button.primary {
+  background: #008080 !important;
+  border-color: #008080 !important;
+  color: #ffffff !important;
+}
 .sl-link-button.primary:hover {
-  background-color: var(--primary-button-hover);
+  background-color: #006b6b !important;
+  border-color: #006b6b !important;
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .sl-link-button.primary:hover svg {
   transform: translateX(0.25rem);
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);

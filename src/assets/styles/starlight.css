@@ -196,3 +196,19 @@ article.card {
   letter-spacing: -0.015em;
 }
 ::selection { background: #d5eaea; color: #001515; }
+
+/* Cross-reference tables (framework map, licensing map): scroll horizontally
+   instead of breaking the layout, with a branded header row and zebra striping. */
+.sl-markdown-content table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+.sl-markdown-content table thead th {
+  background: var(--sl-color-gray-6);
+  border-bottom: 2px solid var(--sl-color-accent);
+}
+.sl-markdown-content table tbody tr:nth-child(2n) {
+  background: color-mix(in srgb, var(--sl-color-gray-6) 50%, transparent);
+}

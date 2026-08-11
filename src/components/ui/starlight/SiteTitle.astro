@@ -1,5 +1,4 @@
 ---
-import docsLogo from '@images/starlight/docs_logo.svg?raw';
 import type { Props } from '@astrojs/starlight/props';
 
 const main = '/';
@@ -32,12 +31,7 @@ const docs = '/' + locale + 'docs/';
     </svg>
     <span class="wordmark"><b>Cloud</b> Architecture</span>
   </a>
-  <a
-    class="docs-logo"
-    href={docs}
-    set:html={docsLogo}
-    aria-label="Cloud Architecture Docs"
-  />
+  <a class="docs-pill" href={docs} aria-label="Cloud Architecture Docs">Docs</a>
 </span>
 
 <style>
@@ -60,6 +54,21 @@ const docs = '/' + locale + 'docs/';
   }
   .main-logo .wordmark b {
     font-weight: 700;
+  }
+
+  /* Brand "Docs" pill in place of the old script wordmark. */
+  .docs-pill {
+    align-self: center;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 9999px;
+    color: var(--sl-color-accent);
+    font-family: var(--sl-font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    padding: 0.28rem 0.6rem;
+    text-transform: uppercase;
   }
 
   .flex {
