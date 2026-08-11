@@ -34,13 +34,13 @@ export default defineConfig({
     starlight({
       title: 'Cloud Architecture Docs',
       sidebar: [
-        { label: 'Overview', link: '/welcome-to-docs/' },
-        { label: 'Start here', link: '/start-here/' },
+        { label: 'Overview', link: '/docs/' },
+        { label: 'Start here', link: '/docs/start-here/' },
         {
           label: 'Reference',
           items: [
-            { label: 'Framework map', link: '/framework-mapping/' },
-            { label: 'Licensing map', link: '/licensing/' },
+            { label: 'Framework map', link: '/docs/framework-mapping/' },
+            { label: 'Licensing map', link: '/docs/licensing/' },
           ],
         },
       ],
