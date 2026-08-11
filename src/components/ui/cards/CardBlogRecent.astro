@@ -5,11 +5,10 @@ import type { CollectionEntry } from 'astro:content';
 import AvatarBlogLarge from '@components/ui/avatars/AvatarBlogLarge.astro';
 import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
 
-const { blogEntry, recentBlogLocale = '' } = Astro.props;
+const { blogEntry } = Astro.props;
 
 interface Props {
   blogEntry: CollectionEntry<'blog'>;
-  recentBlogLocale?: string;
 }
 ---
 
@@ -40,9 +39,7 @@ interface Props {
     >
       <a
         class="ring-zinc-500 outline-hidden transition duration-300 hover:text-orange-400 focus-visible:ring-3 dark:ring-zinc-200 dark:hover:text-neutral-50 dark:focus:outline-hidden"
-        href={recentBlogLocale && recentBlogLocale !== 'en'
-          ? `/${recentBlogLocale}/blog/${blogEntry.id.replace(/^fr\//, '')}/`
-          : `/blog/${blogEntry.id.replace(/^en\//, '')}/`}
+        href={`/blog/${blogEntry.id.replace(/^en\//, '')}/`}
       >
         {blogEntry.data.description}
       </a>
@@ -63,9 +60,7 @@ interface Props {
     {/* Read More button which is a link to the blog post detailed page */}
     <div class="mt-5">
       <PrimaryCTA
-        url={recentBlogLocale && recentBlogLocale !== 'en'
-          ? `/${recentBlogLocale}/blog/${blogEntry.id.replace(/^fr\//, '')}/`
-          : `/blog/${blogEntry.id.replace(/^en\//, '')}/`}
+        url={`/blog/${blogEntry.id.replace(/^en\//, '')}/`}
         title="Read More"
         data-astro-prefetch
       />
