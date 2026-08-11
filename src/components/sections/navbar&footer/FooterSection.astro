@@ -138,7 +138,7 @@ const crafted: string = 'Crafted by';
           const json = await res.json().catch(() => ({}));
           if (res.ok && json.success) {
             subForm.reset();
-            subStatus.textContent = 'Thanks, you’re on the list.';
+            subStatus.textContent = "Thanks, you're on the list.";
           } else {
             subStatus.textContent = 'Something went wrong. Please try again.';
           }
