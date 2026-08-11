@@ -15,7 +15,10 @@ permissions:
 
 jobs:
   build_and_deploy:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    # Skip Dependabot PRs: they run in a separate secret context without
+    # CONTENT_REPO_TOKEN, so the submodule checkout can't authenticate. The
+    # build is validated on merge to master instead.
+    if: (github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')) && github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     name: Build and Deploy
     steps:
@@ -36,7 +39,7 @@ jobs:
           output_location: "dist"
 
   close_pull_request:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     name: Close Pull Request
     steps:
