@@ -4,9 +4,10 @@ description: The Microsoft 365 hardening path in order — foundations first, th
 ---
 
 import { Aside, Steps } from '@astrojs/starlight/components';
+import GuideLink from '@components/ui/starlight/GuideLink.astro';
 
 <Aside type="note" title="Rolling out">
-The series publishes one guide at a time. Links to posts that aren't live yet won't resolve — the [blog](/blog) shows what's published so far.
+The series publishes one guide at a time — each step below is marked **Published** or **Soon**. The [blog](/blog) shows what's live.
 </Aside>
 
 This is the whole **Build & Secure Microsoft 365** series in the order I'd actually do it. Work top to bottom for a new tenant, or jump to the step you need. Each link is the full guide: the portal steps, the reasoning, and the PowerShell.
@@ -19,12 +20,12 @@ Understand what you're hardening before you touch a setting.
 
 <Steps>
 
-1. [Set Up and Secure a Microsoft 365 Tenant (New or Existing)](/blog/setup-secure-microsoft-365-tenant-from-scratch/) — the map for everything below.
-2. [What Microsoft Entra ID Actually Is](/blog/microsoft-entra-id-fundamentals-primer/) — the identity layer every later control sits on.
-3. [Managing Users](/blog/microsoft-365-managing-users/) — joiners, and the leaver process that actually closes the hole.
-4. [Groups and Group-Based Licensing](/blog/microsoft-365-groups-and-group-based-licensing/) — get this right early and every later step gets easier to target.
-5. [Admin Roles and Least Privilege](/blog/microsoft-entra-admin-roles-and-rbac/) — the narrower Entra roles to hand out instead of Global Admin.
-6. [Microsoft 365 Licensing and Editions](/blog/microsoft-365-licensing-for-security/) — what each edition unlocks, so you buy the controls you need.
+1. <GuideLink slug="setup-secure-microsoft-365-tenant-from-scratch" label="Set Up and Secure a Microsoft 365 Tenant (New or Existing)" desc="the map for everything below." />
+2. <GuideLink slug="microsoft-entra-id-fundamentals-primer" label="What Microsoft Entra ID Actually Is" desc="the identity layer every later control sits on." />
+3. <GuideLink slug="microsoft-365-managing-users" label="Managing Users" desc="joiners, and the leaver process that actually closes the hole." />
+4. <GuideLink slug="microsoft-365-groups-and-group-based-licensing" label="Groups and Group-Based Licensing" desc="get this right early and every later step gets easier to target." />
+5. <GuideLink slug="microsoft-entra-admin-roles-and-rbac" label="Admin Roles and Least Privilege" desc="the narrower Entra roles to hand out instead of Global Admin." />
+6. <GuideLink slug="microsoft-365-licensing-for-security" label="Microsoft 365 Licensing and Editions" desc="what each edition unlocks, so you buy the controls you need." />
 
 </Steps>
 
@@ -34,15 +35,15 @@ The tenant hardening itself, in sequence.
 
 <Steps>
 
-1. [Provisioning the Tenant](/blog/microsoft-365-tenant-provisioning-day-one/) — the first-ten-minutes decisions you can't take back.
-2. [Break-Glass, Least Privilege and PIM](/blog/break-glass-accounts-least-privilege-pim/) — lock down standing admin access.
-3. [The Conditional Access Baseline](/blog/conditional-access-baseline-every-tenant-needs/) — where Zero Trust stops being a slogan.
-4. [Passwordless and Strong MFA](/blog/passwordless-mfa-microsoft-365/) — phishing-resistant sign-in, rolled out without stranding anyone.
-5. [Securing Exchange Online](/blog/secure-exchange-online-anti-phishing-dmarc-defender/) — anti-phishing, the three email-auth records, and Defender.
-6. [Data Protection with Purview](/blog/purview-sensitivity-labels-dlp-retention/) — a small, usable sensitivity-label and DLP starting point.
-7. [App Consent and External Sharing](/blog/microsoft-365-app-consent-and-external-sharing/) — close the side doors MFA doesn't guard.
-8. [Audit Logging, Alerts and Secure Score](/blog/microsoft-365-audit-logging-alerts-secure-score/) — make the tenant something you can see into.
-9. [The Launch Checklist](/blog/microsoft-365-tenant-launch-checklist/) — work down it before you hand the tenant over.
+1. <GuideLink slug="microsoft-365-tenant-provisioning-day-one" label="Provisioning the Tenant" desc="the first-ten-minutes decisions you can't take back." />
+2. <GuideLink slug="break-glass-accounts-least-privilege-pim" label="Break-Glass, Least Privilege and PIM" desc="lock down standing admin access." />
+3. <GuideLink slug="conditional-access-baseline-every-tenant-needs" label="The Conditional Access Baseline" desc="where Zero Trust stops being a slogan." />
+4. <GuideLink slug="passwordless-mfa-microsoft-365" label="Passwordless and Strong MFA" desc="phishing-resistant sign-in, rolled out without stranding anyone." />
+5. <GuideLink slug="secure-exchange-online-anti-phishing-dmarc-defender" label="Securing Exchange Online" desc="anti-phishing, the three email-auth records, and Defender." />
+6. <GuideLink slug="purview-sensitivity-labels-dlp-retention" label="Data Protection with Purview" desc="a small, usable sensitivity-label and DLP starting point." />
+7. <GuideLink slug="microsoft-365-app-consent-and-external-sharing" label="App Consent and External Sharing" desc="close the side doors MFA doesn't guard." />
+8. <GuideLink slug="microsoft-365-audit-logging-alerts-secure-score" label="Audit Logging, Alerts and Secure Score" desc="make the tenant something you can see into." />
+9. <GuideLink slug="microsoft-365-tenant-launch-checklist" label="The Launch Checklist" desc="work down it before you hand the tenant over." />
 
 </Steps>
 
@@ -50,10 +51,10 @@ The tenant hardening itself, in sequence.
 
 The extras that come up on real tenants once the baseline is in.
 
-- [Securing Microsoft 365 Copilot Before You Switch It On](/blog/securing-microsoft-365-copilot-governance/) — Copilot respects your permissions, which is exactly the problem.
-- [Hardening Microsoft Teams Meetings and External Access](/blog/hardening-microsoft-teams/) — Teams ships open; close it down.
-- [Microsoft 365 Backup and Recovery](/blog/microsoft-365-backup-and-recovery/) — retention is not backup. Here's the difference.
-- [Responding to a Compromised Microsoft 365 Account](/blog/microsoft-365-account-compromise-response/) — the runbook for when one gets taken over.
+- <GuideLink slug="securing-microsoft-365-copilot-governance" label="Securing Microsoft 365 Copilot Before You Switch It On" desc="Copilot respects your permissions, which is exactly the problem." />
+- <GuideLink slug="hardening-microsoft-teams" label="Hardening Microsoft Teams Meetings and External Access" desc="Teams ships open; close it down." />
+- <GuideLink slug="microsoft-365-backup-and-recovery" label="Microsoft 365 Backup and Recovery" desc="retention is not backup. Here's the difference." />
+- <GuideLink slug="microsoft-365-account-compromise-response" label="Responding to a Compromised Microsoft 365 Account" desc="the runbook for when one gets taken over." />
 
 ---
 

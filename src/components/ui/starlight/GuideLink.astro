@@ -1,0 +1,59 @@
+---
+// A guide reference that knows whether its post is live yet. Published posts
+// render as a link with a teal "Published" badge; drafts render as plain text
+// with a "Soon" badge (no dead link). Status is read from the blog collection,
+// so it flips automatically as posts publish.
+import { getCollection } from 'astro:content';
+
+interface Props {
+  slug: string;
+  label: string;
+  desc?: string;
+}
+const { slug, label, desc } = Astro.props;
+
+const posts = await getCollection('blog');
+const post = posts.find((p) => p.id.replace(/^en\//, '') === slug);
+const published = !!post && !post.data.draft;
+const href = `/blog/${slug}/`;
+---
+
+<span class="guide-link">
+  {
+    published ? (
+      <a href={href}>{label}</a>
+    ) : (
+      <span class="guide-link__pending">{label}</span>
+    )
+  }
+  <span class={`guide-badge ${published ? 'guide-badge--live' : 'guide-badge--soon'}`}>
+    {published ? 'Published' : 'Soon'}
+  </span>
+  {desc && <span class="guide-link__desc"> — {desc}</span>}
+</span>
+
+<style>
+  .guide-badge {
+    border-radius: 9999px;
+    font-family: var(--sl-font-mono);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-inline-start: 0.35rem;
+    padding: 0.08rem 0.42rem;
+    text-transform: uppercase;
+    vertical-align: 0.08em;
+    white-space: nowrap;
+  }
+  .guide-badge--live {
+    background: var(--sl-color-accent-low);
+    color: var(--sl-color-accent-high);
+  }
+  .guide-badge--soon {
+    border: 1px solid var(--sl-color-gray-5);
+    color: var(--sl-color-gray-3);
+  }
+  .guide-link__pending {
+    color: var(--sl-color-gray-3);
+  }
+</style>
