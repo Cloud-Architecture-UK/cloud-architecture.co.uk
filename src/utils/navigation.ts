@@ -3,7 +3,7 @@ const navBarLinks = [
   { name: 'Home', url: '/' },
   { name: 'Blog', url: '/blog' },
   { name: 'Frameworks', url: '/frameworks' },
-  { name: 'Docs', url: '/docs/', soon: true },
+  { name: 'Docs', url: '/docs/' },
   { name: 'About', url: '/about' },
   { name: 'Contact', url: '/contact' },
 ];
@@ -14,7 +14,7 @@ const footerLinks = [
     links: [
       { name: 'Blog', url: '/blog' },
       { name: 'Frameworks', url: '/frameworks' },
-      { name: 'Docs', url: '/docs/', soon: true },
+      { name: 'Docs', url: '/docs/' },
       { name: 'RSS', url: '/rss.xml' },
     ],
   },
