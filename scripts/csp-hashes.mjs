@@ -49,8 +49,13 @@ const newCsp = csp
   .map((directive) => {
     const d = directive.trim();
     if (!d.startsWith('script-src')) return directive;
-    // Rebuild script-src: keep 'self', drop 'unsafe-inline', add the hashes.
-    return ` script-src 'self' ${sorted.join(' ')}`;
+    // Rebuild script-src: keep 'self' and any explicit host allowlist (e.g.
+    // hCaptcha), drop 'unsafe-inline', add the inline-script hashes.
+    const hosts = d
+      .split(/\s+/)
+      .slice(1)
+      .filter((t) => t.startsWith('https://') || t.startsWith('http://'));
+    return ` script-src 'self' ${[...hosts, ...sorted].join(' ')}`;
   })
   .join(';');
 
