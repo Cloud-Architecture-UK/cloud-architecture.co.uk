@@ -133,6 +133,11 @@ article.card {
   color: var(--sl-color-accent);
 }
 
+/* Links inside asides use the brand accent, not Starlight's default note blue. */
+.starlight-aside a {
+  color: var(--sl-color-accent);
+}
+
 .sl-markdown-content ul:not(:where(.not-content *)) {
   list-style-type: none;
   padding-left: 0;
