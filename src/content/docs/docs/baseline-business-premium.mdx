@@ -1,0 +1,45 @@
+---
+title: Business Premium baseline
+description: The definitive control set for a Microsoft 365 Business Premium tenant, ordered as a checklist, mapped to CIS Level 1 and Cyber Essentials, each control linking to the full guide.
+tableOfContents: false
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="Working draft (v0.1)">
+This is the template for a per-licence baseline. Every row is drawn from the framework and licensing maps, but verify each against the live guide before you publish it, and version it properly when it's ready.
+</Aside>
+
+**Target: Microsoft 365 Business Premium** (Entra ID P1, Defender for Office 365 Plan 1). Achieves **CIS Level 1** and covers the five **Cyber Essentials** controls.
+
+This is the whole hardening, distilled to one page: the controls in the order you apply them, what each one does, the standard it satisfies, and a link to the guide with the portal steps and the PowerShell. Work down it; tick each box; you have a defensible record of how the tenant was secured.
+
+It's built from two things already on this site - the [framework map](/docs/framework-mapping/) (control to CIS/NIST) and the [licensing map](/docs/licensing/) (control to SKU). This baseline is the join: everything achievable on Business Premium, in sequence.
+
+## The baseline
+
+| # | Control | What to configure | CIS / NIST | Guide |
+| --- | --- | --- | --- | --- |
+| 1 | Tenant provisioning | Org-wide defaults, restrict user consent and self-service tenant creation | Org settings · CM-6, AC-2, AC-6 | [Step 1](/blog/microsoft-365-tenant-provisioning-day-one/) |
+| 2 | Break-glass admins | Two cloud-only emergency accounts, excluded from CA, alerted on sign-in | AC-2, CP-2 | [Step 2](/blog/break-glass-accounts-least-privilege-pim/) |
+| 3 | Conditional Access baseline | Require MFA for all users, block legacy auth, report-only before enforce | Access enforcement · IA-2, AC-3 | [Step 3](/blog/conditional-access-baseline-every-tenant-needs/) |
+| 4 | Strong / passwordless MFA | Phishing-resistant methods, authentication strengths, drop SMS as primary | IA-2, IA-5 | [Step 4](/blog/passwordless-mfa-microsoft-365/) |
+| 5 | Exchange Online security | Anti-phishing policy, SPF/DKIM/DMARC, Safe Links and Safe Attachments | SC-8, SI-8, SI-4 | [Step 5](/blog/secure-exchange-online-anti-phishing-dmarc-defender/) |
+| 6 | Data protection (Purview) | Manual sensitivity labels and a starter DLP policy | SC-28, AC-16, SI-12 | [Step 6](/blog/purview-sensitivity-labels-dlp-retention/) |
+| 7 | App consent & sharing | Restrict user app consent, admin-consent workflow, tighten external sharing | AC-4, AC-6, AC-21, AC-3 | [Step 7](/blog/microsoft-365-app-consent-and-external-sharing/) |
+| 8 | Audit logging & alerts | Enable audit logging, set the alert policies that matter, track Secure Score | AU-2, AU-6, SI-4 | [Step 8](/blog/microsoft-365-audit-logging-alerts-secure-score/) |
+| 9 | Go-live check | Work the launch checklist and record the evidence | Aggregate | [Step 9](/blog/microsoft-365-tenant-launch-checklist/) |
+
+## Beyond Business Premium
+
+These raise the bar but need **E5 or add-ons**, so they sit outside this baseline. The set above is complete and defensible on Business Premium alone; treat these as the upgrade path, not a gap.
+
+- **PIM** (just-in-time admin) - Entra ID P2
+- **Risk-based Conditional Access** and Identity Protection - Entra ID P2
+- **Automatic labelling and full DLP** coverage - E5 / Purview
+- **Automated access reviews** - Entra ID P2
+- **Long audit retention and advanced hunting** - E5
+
+## Changelog
+
+- **v0.1** - initial draft, mapped to the Build & Secure series.
