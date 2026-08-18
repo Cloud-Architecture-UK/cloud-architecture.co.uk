@@ -1,0 +1,70 @@
+<!doctype html>
+<!--
+  Public holding page served to anonymous visitors while the site is gated
+  (see ../staticwebapp.config.json: 401 -> /coming-soon). Kept as a STATIC file
+  in public/ on purpose: Astro copies it verbatim, so nothing injects an
+  /_astro/*.js module that would be blocked by the /* -> preview gate. No inline
+  JS, so the site CSP stays satisfied. Login uses SWA's Entra provider (invited
+  users get the `preview` role via Role management).
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Cloud Architecture — coming soon</title>
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; }
+      body {
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: radial-gradient(1200px 600px at 50% -10%, #0f2a2a 0%, #0a0f14 55%, #070a0e 100%);
+        color: #e7edf2;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center; padding: 2rem; line-height: 1.55;
+      }
+      .lockup { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
+      .lockup svg { width: 46px; height: 46px; }
+      .wordmark { font-size: 1.9rem; letter-spacing: -0.03em; color: #fff; white-space: nowrap; }
+      .wordmark b { font-weight: 700; }
+      .badge {
+        display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .12em;
+        text-transform: uppercase; color: #4fd1c5; border: 1px solid rgba(0,128,128,.5);
+        border-radius: 999px; padding: .3rem .7rem; margin-bottom: 1.4rem;
+      }
+      h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); margin: 0 0 .8rem; color: #fff; letter-spacing: -0.02em; }
+      p { max-width: 46ch; margin: 0 auto 1.6rem; color: #b6c2cc; }
+      a.site { color: #4fd1c5; text-decoration: none; border-bottom: 1px solid rgba(79,209,197,.4); }
+      a.site:hover { border-bottom-color: #4fd1c5; }
+      .login { margin-top: 2.2rem; font-size: .85rem; }
+      .login a { color: #8aa0ad; text-decoration: none; border-bottom: 1px solid transparent; }
+      .login a:hover { color: #cfe0ea; border-bottom-color: rgba(207,224,234,.4); }
+      footer { margin-top: 3rem; font-size: .75rem; color: #5f6f7a; }
+    </style>
+  </head>
+  <body>
+    <span class="lockup">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M10.4 22h19.2a6 6 0 0 0 .84-11.95A9 9 0 0 0 12.32 11.32 5.64 5.64 0 0 0 10.4 22Z" stroke="#fff" stroke-width="3.2" stroke-linejoin="round"></path>
+        <path d="M10.45 29h9" stroke="#fff" stroke-width="3.6" stroke-linecap="round"></path>
+        <path d="M23.45 29h9" stroke="#008080" stroke-width="3.6" stroke-linecap="round"></path>
+      </svg>
+      <span class="wordmark"><b>Cloud</b> Architecture</span>
+    </span>
+
+    <span class="badge">Under construction</span>
+    <h1>Something solid is being built here.</h1>
+    <p>
+      Hands-on Microsoft 365 and Azure security — the portal steps, the reasoning,
+      and the PowerShell to automate it. Not quite ready for the public yet.
+    </p>
+    <p>Follow along on <a class="site" href="https://www.linkedin.com/in/markdhughes91/">LinkedIn</a> in the meantime.</p>
+
+    <div class="login">
+      <a href="/.auth/login/aad?post_login_redirect_uri=/">Team login</a>
+    </div>
+
+    <footer>© 2026 Cloud Architecture · Mark Hughes</footer>
+  </body>
+</html>

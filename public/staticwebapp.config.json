@@ -1,6 +1,12 @@
 {
   "platform": { "apiRuntime": "node:20" },
+  "routes": [
+    { "route": "/coming-soon", "allowedRoles": ["anonymous", "preview"] },
+    { "route": "/.auth/*", "allowedRoles": ["anonymous", "preview"] },
+    { "route": "/*", "allowedRoles": ["preview"] }
+  ],
   "responseOverrides": {
+    "401": { "rewrite": "/coming-soon", "statusCode": 200 },
     "404": { "rewrite": "/404.html", "statusCode": 404 }
   },
   "globalHeaders": {
@@ -11,5 +17,16 @@
     "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
     "X-Frame-Options": "SAMEORIGIN",
     "Cross-Origin-Opener-Policy": "same-origin"
+  },
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "registration": {
+          "openIdIssuer": "https://login.microsoftonline.com/common/v2.0",
+          "clientIdSettingName": "AAD_CLIENT_ID",
+          "clientSecretSettingName": "AAD_CLIENT_SECRET"
+        }
+      }
+    }
   }
 }
