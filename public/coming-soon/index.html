@@ -25,8 +25,10 @@
         text-align: center; padding: 2rem; line-height: 1.55;
       }
       .lockup { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
-      .lockup svg { width: 46px; height: 46px; }
-      .wordmark { font-size: 1.9rem; letter-spacing: -0.03em; color: #fff; white-space: nowrap; }
+      /* Mark's cloud glyph sits in the upper part of its viewBox, so nudge it
+         down a touch to visually centre against the wordmark's cap height. */
+      .lockup svg { width: 46px; height: 46px; position: relative; top: 2px; }
+      .wordmark { font-size: 1.9rem; line-height: 1; letter-spacing: -0.03em; color: #fff; white-space: nowrap; }
       .wordmark b { font-weight: 700; }
       .badge {
         display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .12em;
@@ -56,7 +58,7 @@
     <span class="badge">Under construction</span>
     <h1>Something solid is being built here.</h1>
     <p>
-      Hands-on Microsoft 365 and Azure security — the portal steps, the reasoning,
+      Hands-on Microsoft 365 and Azure security: the portal steps, the reasoning,
       and the PowerShell to automate it. Not quite ready for the public yet.
     </p>
     <p>Follow along on <a class="site" href="https://www.linkedin.com/in/markdhughes91/">LinkedIn</a> in the meantime.</p>
