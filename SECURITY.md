@@ -13,6 +13,6 @@ Please include enough detail to reproduce it. I'll acknowledge within a few days
 
 ## Scope
 
-In scope: this site, its build, and its deployment config. Out of scope: the third-party services it uses (Azure Static Web Apps, Web3Forms) — report those to the respective vendor.
+In scope: this site, its build, and its deployment config. Out of scope: the third-party services it uses (Azure Static Web Apps, Kit/ConvertKit for the newsletter, hCaptcha) — report those to the respective vendor.
 
 Thanks for helping keep it secure.
