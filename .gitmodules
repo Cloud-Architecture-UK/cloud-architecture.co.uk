@@ -1,3 +1,6 @@
 [submodule "src/content/blog"]
 	path = src/content/blog
 	url = https://github.com/Cloud-Architecture-UK/content-cloud-architecture.git
+[submodule "src/content/docs"]
+	path = src/content/docs
+	url = https://github.com/Cloud-Architecture-UK/docs-cloud-architecture.git
