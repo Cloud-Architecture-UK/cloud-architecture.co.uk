@@ -6,7 +6,7 @@ Source for [cloud-architecture.co.uk](https://www.cloud-architecture.co.uk), my 
 
 ## What it is
 
-A static [Astro](https://astro.build) site hosted on [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/), deployed from `master` via GitHub Actions. Infrastructure (Terraform) is managed in a separate private repository. The live site is currently behind a "coming soon" gate (`public/staticwebapp.config.json`) while it's built out.
+A static [Astro](https://astro.build) site hosted on [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/), deployed from `main` via GitHub Actions. Infrastructure (Terraform) is managed in a separate private repository. The live site is currently behind a "coming soon" gate (`public/staticwebapp.config.json`) while it's built out.
 
 Stack: Astro (static output), Tailwind CSS v4 + Preline UI, Starlight for docs, Expressive Code for script blocks. The build post-processes the HTML and hashes every inline script into the Content-Security-Policy (`scripts/csp-hashes.mjs`), so `script-src` ships without `'unsafe-inline'`.
 

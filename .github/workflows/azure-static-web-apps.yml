@@ -2,10 +2,10 @@ name: Deploy to Azure Static Web Apps
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
     types: [opened, synchronize, reopened, closed]
-    branches: [master]
+    branches: [main]
 
 # Least privilege: the deploy needs to read the repo and comment preview URLs
 # on PRs, nothing more. Caps the blast radius of a compromised step/dependency.
@@ -17,7 +17,7 @@ jobs:
   build_and_deploy:
     # Skip Dependabot PRs: they run in a separate secret context without
     # CONTENT_REPO_TOKEN, so the submodule checkout can't authenticate. The
-    # build is validated on merge to master instead.
+    # build is validated on merge to main instead.
     if: (github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')) && github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     name: Build and Deploy
