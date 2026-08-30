@@ -17,7 +17,7 @@
     "@astrojs/mdx": "^7.0.7",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/starlight": "^0.41.5",
+    "@astrojs/starlight": "^0.41.9",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.8",
     "astro-expressive-code": "^0.44.1",
